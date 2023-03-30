@@ -1,0 +1,84 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMkBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTIyfQ.PiybbW_Fw3HJ3KQaa7CQPKJCSvMYtKBdmx3RHZ0Ng_w
+### REGISTER
+POST https://outstanding-jade-prawn.cyclic.app/api/users/register
+Content-Type: application/json
+
+{
+  "email": "examp2@email.com",
+  "password": "nhewew83jdol$%&^./`"
+}
+###
+
+### LOGIN
+GET https://outstanding-jade-prawn.cyclic.app/api/users/login
+Content-Type: application/json
+
+{
+  "email": "examp2@email.com",
+  "password": "nhewew83jdol$%&^./`"
+}
+###
+PATCH https://outstanding-jade-prawn.cyclic.app/api/contacts/6408873f115c40d0247c37a6/favorite
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "favorite": "true"
+}
+###
+### NO USER
+PATCH https://outstanding-jade-prawn.cyclic.app/api/contacts/6401c6c4d15d964a6208a1f2/favorite
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "favorite": "true"
+}
+###
+
+###
+POST https://outstanding-jade-prawn.cyclic.app/api/contacts
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "joe2222oooNOWWW08",
+  "email": "examp@email.com",
+  "phone": "+111111162222"
+}
+###
+
+GET https://outstanding-jade-prawn.cyclic.app/api/contacts/6401c6c4d15d964a6208a1f2
+Accept: application/json
+Authorization: Bearer {{token}}
+###
+
+### GET All auth PAGINATION
+GET https://outstanding-jade-prawn.cyclic.app/api/contacts?page=1&limit=2
+Accept: application/json
+Authorization: Bearer {{token}}
+###
+
+### CYCLIC DEPLOY
+GET https://outstanding-jade-prawn.cyclic.app/api/contacts
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### GET All auth PAGINATION & FAVORITE
+GET https://outstanding-jade-prawn.cyclic.app/api/contacts?page=1&limit=5&favorite=true
+Accept: application/json
+Authorization: Bearer {{token}}
+###
+
+### CURRENT
+GET  https://outstanding-jade-prawn.cyclic.app/api/users/current
+Accept: application/json
+Authorization: Bearer {{token}}
+###
+
+#user2:
+
+
+
+

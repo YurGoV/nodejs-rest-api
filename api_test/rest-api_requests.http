@@ -1,0 +1,147 @@
+### GET simple
+GET http://localhost:3000/api/contacts
+Accept: application/json
+###
+GET http://localhost:3000/api/contacts/64005ebe93f0975ba9b7bdd7
+Accept: application/json
+###
+
+### BY ID no owner
+GET http://localhost:3000/api/contacts/63f1e79d4dc50cca4f43735b
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3NzQwMjE3fQ.L4gx-fCWlbw0g5Y9fhL9w1H92oyKJCzPA5ULBB-OhtE
+###
+### BY ID with owner
+GET http://localhost:3000/api/contacts/64005ebe93f0975ba9b7bdd7
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3NzQwMjE3fQ.L4gx-fCWlbw0g5Y9fhL9w1H92oyKJCzPA5ULBB-OhtE
+###
+
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+
+{
+  "name": "joeNOWWW",
+  "email": "eeemmmaaaiiilll",
+  "phone": "11111116"
+}
+###
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3NzQwMjE3fQ.L4gx-fCWlbw0g5Y9fhL9w1H92oyKJCzPA5ULBB-OhtE
+
+{
+  "name": "joeNOWWW06777",
+  "email": "examp@email.com",
+  "phone": "+111111162222"
+}
+###
+
+
+DELETE http://localhost:3000/api/contacts/63fd1f221db8f9921637e2ed
+Accept: application/json
+###
+GET http://localhost:3000/api/contacts/63fd1f221db8f9921637e2ed
+Accept: application/json
+###
+// todo: get by wrong id????
+
+###
+PATCH http://localhost:3000/api/contacts/63f1e79d4dc50cca4f43735b
+Content-Type: application/json
+
+{
+  "phone": "+380677490000"
+}
+###
+GET http://localhost:3000/api/contacts/63f1e79d4dc50cca4f43735b
+Accept: application/json
+###
+
+
+PATCH http://localhost:3000/api/contacts/63f1e79d4dc50cca4f43735b/favorite
+Content-Type: application/json
+
+{
+  "favorite": "true"
+}
+
+### //todo: catch duplicate error
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+  "email": "exampl3@email.com",
+  "password": "nhd783jdol$%&^./`"
+}
+
+###
+
+GET http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "examp1@email.com",
+  "password": "nhd783jdol"
+}
+
+###
+
+### GET All auth
+GET http://localhost:3000/api/contacts
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3NzQwMjE3fQ.L4gx-fCWlbw0g5Y9fhL9w1H92oyKJCzPA5ULBB-OhtE
+###
+### GET noauth
+GET http://localhost:3000/api/contacts
+Accept: application/json
+###
+
+
+GET http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "exampl3@email.com",
+  "password": "nhd783jdol$%&^./`"
+}
+
+###
+POST http://localhost:3000/api/users/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wbDNAZW1haWwuY29tIiwic3Vic2NyaXB0aW9uIjoic3RhcnRlciIsImlhdCI6MTY3ODE4MzIyM30.yV_4Ci6Hov5TI9w1PDsQwK3eClqDQBj9wZ5xmn-3hKc
+###
+
+## current
+GET  http://localhost:3000/api/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3NzQwMjE3fQ.L4gx-fCWlbw0g5Y9fhL9w1H92oyKJCzPA5ULBB-OhtE
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3NzA3MzM2fQ.t30w3P_9BJiGo4xMVFANZAuA2iFy6AvBvQIUEMIenDM
+###
+
+
+
+# const subscription = Joi.array().items(Joi.string().valid('starter', 'pro', 'business'));
+
+#    updateSubscriptionValidation: (req, res, next) => {
+#        const validationResult = subscriptionSchema.validate(req.body);
+#        if (validationResult.error) {
+#            return res.status(400).json({error: validationResult.error.message})
+#        }
+#        next();
+#    }
+
+#const subscriptionSchema = Joi.object().keys({
+#    subscription: subscription.required()
+#})
+
+#router.patch('/', updateSubscriptionValidation, updateSubscription);
+
+#const patchSubscription = async (subscription) => {
+#    try {
+#
+#    } catch (err) {
+#
+#    }
+#}
+

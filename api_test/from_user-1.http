@@ -1,0 +1,116 @@
+#email": "examp1@email.com",
+
+
+### GET simple
+GET http://localhost:3000/api/contacts
+Accept: application/json
+###
+GET http://localhost:3000/api/contacts/64005ebe93f0975ba9b7bdd7
+Accept: application/json
+###
+
+### BY ID no owner
+GET http://localhost:3000/api/contacts/63f1e79d4dc50cca4f43735b
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+###
+### BY ID with owner
+GET http://localhost:3000/api/contacts/64005ebe93f0975ba9b7bdd7
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+###
+
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+
+{
+  "name": "joeNOWWW1111",
+  "email": "eeemmmaaaiiilll@com.com",
+  "phone": "+380677777777"
+}
+###
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+
+{
+  "name": "joetNOWWW33",
+  "email": "examp@email.com",
+  "phone": "+111111162222"
+}
+###
+
+
+DELETE http://localhost:3000/api/contacts/64070f608e9fd3651163de20
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+
+###
+GET http://localhost:3000/api/contacts/64005ebe93f0975ba9b7bdd7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+Accept: application/json
+###
+// todo: get by wrong id????
+
+###
+PATCH http://localhost:3000/api/contacts/64005ebe93f0975ba9b7bdd7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+
+{
+  "phone": "+380600001111"
+}
+###
+GET http://localhost:3000/api/contacts/6408873f115c40d0247c37a6
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+
+###
+PATCH http://localhost:3000/api/contacts/6401c6c4d15d964a6208a1f2/favorite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+
+{
+  "favorite": "false"
+}
+
+### LOGIN
+GET http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "examp1@email.com",
+  "password": "nhd783jdol"
+}
+
+###
+
+### GET All auth
+GET http://localhost:3000/api/contacts
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+###
+
+### GET All auth PAGINATION
+GET http://localhost:3000/api/contacts?page=3&limit=5
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+###
+
+### GET All auth PAGINATION & FAVORITE
+GET http://localhost:3000/api/contacts?page=1&limit=5&favorite=true
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+###
+
+POST http://localhost:3000/api/users/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+###
+
+### CURRENT
+GET  http://localhost:3000/api/users/current
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMUBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTAzfQ.xkohqIbvnUEi0Ub2v7ykfG9MbuoGuHgwC7MXkEhVZO0
+###

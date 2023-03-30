@@ -1,0 +1,36 @@
+PATCH http://localhost:3000/api/avatars
+Content-Type: multipart/form-data; boundary=boundary
+Content-Disposition: form-data; name="data"; filename="data"
+
+
+--boundary
+Content-Disposition: form-data; name="avatar"; filename="fakeAvatar.png"
+Content-Type: file
+
+< ./fakeAvatar.png
+--boundary--
+###
+GET http://localhost:3000/api/avatars/fakeAvatar_.png
+
+###
+PATCH http://localhost:3000/api/users/avatars/
+Content-Type: multipart/form-data; boundary=boundary
+Content-Disposition: form-data; name="data"; filename="data"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMkBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTIyfQ.PiybbW_Fw3HJ3KQaa7CQPKJCSvMYtKBdmx3RHZ0Ng_w
+
+--boundary
+Content-Disposition: form-data; name="avatar"; filename="fakeAvatar.png"
+Content-Type: file
+
+< ./fakeAvatar_.png
+--boundary--
+###
+
+PATCH http://localhost:3000/api/users/avatars/
+Content-Disposition: form-data; name="data"; filename="data"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMkBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTIyfQ.PiybbW_Fw3HJ3KQaa7CQPKJCSvMYtKBdmx3RHZ0Ng_w
+Content-Type: file
+
+< ./fakeAvatar.png
+
+###
