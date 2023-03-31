@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const { catchAsyncWrapper } = require('./utils');
 
-const { PORT, MONGO_URL } = process.env;
+const { PORT, MONGO_URL, NODE_ENV } = process.env;
 // const { MONGO_URL } = process.env.MONGO_URL;
 
 const connectMongo = catchAsyncWrapper(async () => {
@@ -11,20 +11,40 @@ const connectMongo = catchAsyncWrapper(async () => {
   await mongoose.connect(MONGO_URL);
   return console.log('connected to DB');
 });
+connectMongo();
 
-const start = async () => {
+/* app.use((err, req, res, next) => {
+  const { status } = err; // there we get error status, that was setting on user useMiddlewares
+
+  if (NODE_ENV === 'development') {
+    console.log('CL ~ app.js [35]: lllll');
+    res.status(status || 500).json({
+      message: err.message,
+      stack: err.stack,
+    });
+  } else {
+    res.status(status || 500).json({
+      message: err.message,
+    });
+  }
+  // TODO: stack: err.stack// для розробки - конкретика по помилці - можна окремо під умовами оточення: дев та ін
+  // TODO: можна винести в окремий файл
+}); */
+
+app.listen(PORT, () => {
+  console.log(`Server running up on port ${PORT}
+  api available at http://localhost:${PORT}/api/v1/`);
+});
+
+/* const start = async () => {
   await connectMongo();
 
-  app.listen(PORT, (err) => {
-    if (err) {
-      console.error('Error at server launch:', err.message);
-    }
-  });
+  app.listen(PORT);
 };
 
 start()
   .then(console.log(`Server running. Use our API on port: ${PORT}`))
-  .catch(console.error);
+  // .catch(console.error); */
 
 // TODO: in homework:
 // * error wrapper;

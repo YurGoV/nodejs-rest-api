@@ -8,6 +8,15 @@ Content-Type: application/json
   "password": "nhewew83jdol$%&^./`"
 }
 ###
+### REGISTER DUPLICATE
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+  "email": "exampErr@email.com",
+  "password": "nhewew83jdol$%&^./`"
+}
+###
 
 ### LOGIN
 GET http://localhost:3000/api/users/login
