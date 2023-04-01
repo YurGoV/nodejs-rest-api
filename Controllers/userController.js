@@ -39,7 +39,7 @@ const { catchAsyncWrapper } = require('../utils');
     res.status(500).json(err.message);
   }
 }; */
-const createUserContr = catchAsyncWrapper(async (req, res, next) => {
+const createUserContr = catchAsyncWrapper(async (req, res) => {
   const userData = req.body;
 
   const createdUser = await registerUserServ(userData);
@@ -62,7 +62,8 @@ const loginUserContr = catchAsyncWrapper(async (req, res, next) => {
     'CL: ~ file: userController.js:72 ~ searchUserResult:',
     searchUserResult
   );
-  if (!searchUserResult) {// todo: !!! start there - move to controller
+  if (!searchUserResult) {
+    // todo:  move to service
     // return res.status(401).json({
     //   message: 'Email or password is wrong',
     // });// todo: !!! video pause there
@@ -84,16 +85,18 @@ const loginUserContr = catchAsyncWrapper(async (req, res, next) => {
   // }
 });
 
-const logoutUserContr = async (req, res, next) => {
-  try {
-    await User.findOneAndUpdate({ email: req.user }, { token: '' });
+const logoutUserContr = catchAsyncWrapper(async (req, res, next) => {
+  // try {
+  await User.findOneAndUpdate({ email: req.user }, { token: '' });
 
-    return res.status(204).json({});
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-};
+  return res.status(204).json({});
+  // } catch (err) {
+  //   res.status(500).json(err.message);
+  // }
+});
 
+// todo: there: if in catch async wrapper - have an error:
+// Cannot set headers after they are sent to the client
 const getCurrentUserContr = (req, res, next) => {
   try {
     const { user, subscription } = req;
@@ -103,41 +106,43 @@ const getCurrentUserContr = (req, res, next) => {
       subscription,
     });
   } catch (err) {
-    res.status(500).json(err.message);
+    // res.status(500).json(err.message);
+    next(err);
   }
 };
 
-const uploadAvatarContr = async (req, res, next) => {
-  try {
-    const { user, uniqueFileName } = req;
-    const avatarTempUrl = path.resolve(AVATAR_TEMP_DIR, uniqueFileName);
-    const avatarConstUrl = path.resolve(AVATAR_CONST_DIR, uniqueFileName);
-    const avatarDownloadUrl = `http://localhost:${PORT}/api/avatars/${uniqueFileName}`;
+const uploadAvatarContr = catchAsyncWrapper(async (req, res, next) => {
+  // try {
+  const { user, uniqueFileName } = req;
+  const avatarTempUrl = path.resolve(AVATAR_TEMP_DIR, uniqueFileName);
+  const avatarConstUrl = path.resolve(AVATAR_CONST_DIR, uniqueFileName);
+  const avatarDownloadUrl = `http://localhost:${PORT}/api/avatars/${uniqueFileName}`;
 
-    const image = await Jimp.read(avatarTempUrl);
-    image.resize = await image.resize(250, Jimp.AUTO);
-    await image.writeAsync(avatarConstUrl);
+  const image = await Jimp.read(avatarTempUrl); // todo:  move to service
+  image.resize = await image.resize(250, Jimp.AUTO);
+  await image.writeAsync(avatarConstUrl);
 
-    await fs.unlink(avatarTempUrl);
+  await fs.unlink(avatarTempUrl);
 
-    await User.findOneAndUpdate(
-      { email: user },
-      { avatarURL: avatarDownloadUrl }
-    );
+  await User.findOneAndUpdate(
+    { email: user },
+    { avatarURL: avatarDownloadUrl }
+  );
 
-    return res.status(200).json({
-      avatarURL: avatarConstUrl,
-    });
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-};
+  return res.status(200).json({
+    avatarURL: avatarConstUrl,
+  });
+  // } catch (err) {
+  //   res.status(500).json(err.message);
+  // }
+});
 
-const verifyUserContr = async (req, res, next) => {
+const verifyUserContr = catchAsyncWrapper(async (req, res, next) => {
   const { verificationToken } = req.params;
 
   const verifyTokenResult = await verifyUserServ(verificationToken);
   if (verifyTokenResult.statusCode === 200) {
+    // todo:  move to service
     return res.status(200).json({
       message: 'Verification successful',
     });
@@ -149,14 +154,15 @@ const verifyUserContr = async (req, res, next) => {
   }
 
   res.status(500).json({ message: 'test' });
-};
+});
 
-const repeatedVerifyUserContr = async (req, res, next) => {
+const repeatedVerifyUserContr = catchAsyncWrapper(async (req, res, next) => {
   const { email } = req.body;
 
   const repeatedMailSend = await sendVerifyMailServ(email);
 
   if (repeatedMailSend.statusCode === 404) {
+    // todo:  move to service
     return res.status(404).json({
       message: 'User not found',
     });
@@ -171,7 +177,7 @@ const repeatedVerifyUserContr = async (req, res, next) => {
       message: 'Verification email sent',
     });
   }
-};
+});
 
 module.exports = {
   createUserContr,

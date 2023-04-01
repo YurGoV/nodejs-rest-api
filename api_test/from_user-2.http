@@ -1,4 +1,4 @@
-#token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inl1cmdvQHByb3Rvbm1haWwuY29tIiwic3Vic2NyaXB0aW9uIjoic3RhcnRlciIsInZlcmlmeSI6dHJ1ZSwiaWF0IjoxNjgwMjEyNDEwfQ.-nUZjtGCYiMmxVKEHtme_EfwNl1IBBTLwfG7YDi50MI
+@token = wyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMkBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwidmVyaWZ5Ijp0cnVlLCJpYXQiOjE2ODAzMzk3OTJ9.p4vaXRn9y7kdMD97uRpNOVyZVM7N4g7XKJg7Ap0e2qg
 ### REGISTER
 POST http://localhost:3000/api/users/register
 Content-Type: application/json
@@ -27,6 +27,18 @@ Content-Type: application/json
   "password": "nhewew83jdol$%&^./`"
 }
 ###
+### CURRENT
+GET  http://localhost:3000/api/users/current
+Accept: application/json
+Authorization: Bearer {{token}}
+###
+### LOGOUT
+POST http://localhost:3000/api/users/logout
+Content-Type: application/json
+Authorization: Bearer {{token}}
+###
+
+
 PATCH http://localhost:3000/api/contacts/6408873f115c40d0247c37a6/favorite
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMkBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTIyfQ.PiybbW_Fw3HJ3KQaa7CQPKJCSvMYtKBdmx3RHZ0Ng_w
@@ -80,11 +92,7 @@ Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMkBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTIyfQ.PiybbW_Fw3HJ3KQaa7CQPKJCSvMYtKBdmx3RHZ0Ng_w
 ###
 
-### CURRENT
-GET  http://localhost:3000/api/users/current
-Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wMkBlbWFpbC5jb20iLCJzdWJzY3JpcHRpb24iOiJzdGFydGVyIiwiaWF0IjoxNjc3ODM3MTIyfQ.PiybbW_Fw3HJ3KQaa7CQPKJCSvMYtKBdmx3RHZ0Ng_w
-###
+
 
 #user2:
 

@@ -47,7 +47,7 @@ start()
   // .catch(console.error); */
 
 // TODO: in homework:
-// * error wrapper;
+// * errors wrapper;
 // * async wrapper;
 // password select false in user model & +password in needed querries;
 // password undefined при відповідях (реєстрація, апдейт, тощо);

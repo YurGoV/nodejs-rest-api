@@ -41,8 +41,9 @@ app.use((err, req, res, next) => {
       stack: err.stack,
     });
   } else {
-    res.status(status || 500).json({
-      message: customErrorMessage(err.message)
+    const {status: customStatus, message} = customErrorMessage(err.message);
+    res.status(customStatus || 500).json({
+      message,
     });
   }
   // TODO: stack: err.stack// для розробки - конкретика по помилці - можна окремо під умовами оточення: дев та ін
