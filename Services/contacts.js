@@ -51,7 +51,9 @@ const removeContactServ = async (contactId, owner) => {
 
 const updateContactServ = (contactId, owner, body) => {
   try {
-    return Contacts.updateOne({ _id: contactId, owner }, body);
+    return Contacts.findOneAndUpdate({ _id: contactId, owner }, body, {
+      new: true,
+    });
   } catch (err) {
     return err.message;
   }

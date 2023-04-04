@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   password: {
     type: String,
+    select: false,
     required: [true, 'Set password for user'],
   },
   email: {

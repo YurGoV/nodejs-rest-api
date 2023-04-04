@@ -52,16 +52,15 @@ const registerUserServ = async ({ email, password }) => {
     verificationToken,
   });
 
-  // await sendMail(email, verificationToken);// todo: uncomment
+  await sendMail(email, verificationToken); // todo: uncomment
 
   return createdUser;
 };
 
 const findValidUserServ = async (email, password) => {
   try {
-    const searchUserResult = await User.findOne({ email });
+    const searchUserResult = await User.findOne({ email }).select('+password');
     const { subscription, verify } = searchUserResult;
-
     if (!searchUserResult) {
       return null;
     }
@@ -72,6 +71,8 @@ const findValidUserServ = async (email, password) => {
     if (!isPassportValid) {
       return null;
     }
+
+    searchUserResult.password = undefined;
 
     const payload = {
       email,

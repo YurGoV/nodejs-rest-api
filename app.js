@@ -6,7 +6,6 @@ const { contactsRouter, usersRouter, filesRouter } = require('./routes');
 const customErrorMessage = require('./utils/customErrorsMessages');
 
 const { NODE_ENV } = process.env;
-console.log('CL: ~ file: app.js:8 ~ NODE_ENV:', NODE_ENV);
 
 const app = express();
 

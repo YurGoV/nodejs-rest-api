@@ -35,7 +35,7 @@ connectMongo();
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Server running up on port ${PORT}
-  api available at http://localhost:${PORT}/api/v1/`);
+  api available at http://localhost:${PORT}/api/`);
 });
 
 /* const start = async () => {
@@ -52,10 +52,10 @@ start()
 
 // TODO: in homework:
 // ? preDone errors wrapper; // need more - from any other - 2 variants for dev and for production
-// ? preDone async wrapper;
-// password select false in user model & +password in needed querries;
-// password undefined при відповідях (реєстрація, апдейт, тощо);
-// current data in update: {new: true};
+// Done async wrapper;
+// ? preDone (in login route) password select false in user model & +password in needed queries;
+// ? preDone (in login route) password undefined при відповідях (реєстрація, апдейт, тощо);
+// ? DONE current data in update: {new: true};
 // перевірка, чи валідний ID // ObjectId.isValid(id);
 // видалити детальну валідацію паролю у джоі при логіні (зробити як тут)
 // uploaded file size limit
