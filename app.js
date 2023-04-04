@@ -29,19 +29,19 @@ app.all('*', (req, res) => {
 /**
  * * Global error handler (middleware)
  */
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const { status } = err; // there we get error status, that was setting on user useMiddlewares
 
   // console.log('~err app.js [34]:', err);
 
   if (NODE_ENV === 'development') {
-    console.log('CL ~ app.js [35]: lllll');
     res.status(status || 500).json({
       message: err.message,
       stack: err.stack,
     });
   } else {
-    const {status: customStatus, message} = customErrorMessage(err.message);
+    const { status: customStatus, message } = customErrorMessage(err.message);
     res.status(customStatus || 500).json({
       message,
     });

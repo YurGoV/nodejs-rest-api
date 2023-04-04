@@ -28,7 +28,7 @@ const sendMail = async (email, verificationToken) => {
   }
 };
 
-const {JWT_SECRET} = process.env;
+const { JWT_SECRET } = process.env;
 
 const generateAvatar = async (email) => {
   try {
@@ -103,7 +103,7 @@ const verifyUserServ = async (verificationToken) => {
     if (searchTokenResult) {
       const email = await searchTokenResult.email;
       await User.findOneAndUpdate(
-        { email},
+        { email },
         { verificationToken: null, verify: true }
       );
 

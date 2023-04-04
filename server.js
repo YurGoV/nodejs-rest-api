@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const { catchAsyncWrapper } = require('./utils');
 
-const { PORT, MONGO_URL, NODE_ENV } = process.env;
+const { PORT, MONGO_URL } = process.env;
 // const { MONGO_URL } = process.env.MONGO_URL;
 
 const connectMongo = catchAsyncWrapper(async () => {
   mongoose.set('strictQuery', false);
   await mongoose.connect(MONGO_URL);
+  // eslint-disable-next-line no-console
   return console.log('connected to DB');
 });
 connectMongo();
@@ -32,6 +33,7 @@ connectMongo();
 }); */
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server running up on port ${PORT}
   api available at http://localhost:${PORT}/api/v1/`);
 });
@@ -44,11 +46,13 @@ app.listen(PORT, () => {
 
 start()
   .then(console.log(`Server running. Use our API on port: ${PORT}`))
-  // .catch(console.error); */
+  // .catch(console.error);
+
+*/
 
 // TODO: in homework:
-// * errors wrapper;
-// * async wrapper;
+// ? preDone errors wrapper; // need more - from any other - 2 variants for dev and for production
+// ? preDone async wrapper;
 // password select false in user model & +password in needed querries;
 // password undefined при відповідях (реєстрація, апдейт, тощо);
 // current data in update: {new: true};
@@ -56,7 +60,7 @@ start()
 // видалити детальну валідацію паролю у джоі при логіні (зробити як тут)
 // uploaded file size limit
 // mongosh auth hook - to homework
-// ?DONE(TO CHECK) dev/prod errors (there - in server.js)
+// ?DONE(TO CHECK) dev/prod errors (lessons - in server.js)
 // admin route/auth
 
 // todo: learn cron job

@@ -26,7 +26,7 @@ const registerUserValidateMwr = async (req, res, next) => {
   const userExists = await User.exists({ email: emailToCheck }); // повертає айді, якщо такий юзер вже є
   // console.log('CL: ~ file: usersValidationMwr.js:28 ~ userExists:', userExists);
 
-  //  if (userExists) return next(new CustomError(409, 'email is already used')); // todo: uncommit
+  if (userExists) return next(new CustomError(409, 'email is already used')); // todo: uncommit
 
   next();
 };

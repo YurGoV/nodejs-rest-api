@@ -58,10 +58,7 @@ const loginUserContr = catchAsyncWrapper(async (req, res, next) => {
   const { email, password } = req.body;
 
   const searchUserResult = await findValidUserServ(email, password);
-  console.log(
-    'CL: ~ file: userController.js:72 ~ searchUserResult:',
-    searchUserResult
-  );
+
   if (!searchUserResult) {
     // todo:  move to service
     // return res.status(401).json({
@@ -85,7 +82,7 @@ const loginUserContr = catchAsyncWrapper(async (req, res, next) => {
   // }
 });
 
-const logoutUserContr = catchAsyncWrapper(async (req, res, next) => {
+const logoutUserContr = catchAsyncWrapper(async (req, res) => {
   // try {
   await User.findOneAndUpdate({ email: req.user }, { token: '' });
 
@@ -111,7 +108,7 @@ const getCurrentUserContr = (req, res, next) => {
   }
 };
 
-const uploadAvatarContr = catchAsyncWrapper(async (req, res, next) => {
+const uploadAvatarContr = catchAsyncWrapper(async (req, res) => {
   // try {
   const { user, uniqueFileName } = req;
   const avatarTempUrl = path.resolve(AVATAR_TEMP_DIR, uniqueFileName);
@@ -137,7 +134,7 @@ const uploadAvatarContr = catchAsyncWrapper(async (req, res, next) => {
   // }
 });
 
-const verifyUserContr = catchAsyncWrapper(async (req, res, next) => {
+const verifyUserContr = catchAsyncWrapper(async (req, res) => {
   const { verificationToken } = req.params;
 
   const verifyTokenResult = await verifyUserServ(verificationToken);
@@ -156,7 +153,7 @@ const verifyUserContr = catchAsyncWrapper(async (req, res, next) => {
   res.status(500).json({ message: 'test' });
 });
 
-const repeatedVerifyUserContr = catchAsyncWrapper(async (req, res, next) => {
+const repeatedVerifyUserContr = catchAsyncWrapper(async (req, res) => {
   const { email } = req.body;
 
   const repeatedMailSend = await sendVerifyMailServ(email);

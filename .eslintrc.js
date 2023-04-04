@@ -9,9 +9,6 @@ module.exports = {
     ecmaVersion: 2020,
   },
   extends: ['airbnb-base', 'eslint:recommended', 'prettier'],
-  parserOptions: {
-    ecmaVersion: 12,
-  },
   plugins: ['prettier'],
   rules: {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
