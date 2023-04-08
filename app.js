@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use('/api/contacts', contactsRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/avatars', filesRouter);
+app.use('/files/', filesRouter);
 
 app.all('*', (req, res) => {
   res.status(404).json({

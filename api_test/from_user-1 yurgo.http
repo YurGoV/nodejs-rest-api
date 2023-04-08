@@ -20,9 +20,11 @@ Content-Type: application/json
 ###
 
 ### GET simple
-GET http://localhost:3000/api/contacts
+GET https://nodejs.yurgo.fun/api/contacts
+# GET http://localhost:3000/api/contacts
 Accept: application/json
 Authorization: Bearer {{token1}}
+###
 ###
 GET http://localhost:3000/api/contacts/642c87122969c63fa569e028
 Accept: application/json

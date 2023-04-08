@@ -20,9 +20,11 @@ const sendMail = async (email, verificationToken) => {
   try {
     await sgMail.send(msg);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
 
     if (error.response) {
+      // eslint-disable-next-line no-console
       console.error(error.response.body);
     }
   }
@@ -34,6 +36,7 @@ const generateAvatar = async (email) => {
   try {
     return await gravatar.url(email, { protocol: 'http', s: '100' });
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err.message);
     return '';
   }
@@ -91,6 +94,7 @@ const findValidUserServ = async (email, password) => {
       user: payload,
     };
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err.message);
   }
 };
@@ -117,6 +121,7 @@ const verifyUserServ = async (verificationToken) => {
       statusCode: 404,
     };
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err.message);
   }
 };
@@ -141,6 +146,7 @@ const sendVerifyMailServ = async (email) => {
       statusCode: 200,
     };
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err.message);
   }
 };

@@ -1,9 +1,10 @@
 const { authMwr } = require('./authMwr');
 const {
-  addPostValidateMwr,
-  updatePostValidateMwr,
+  addContactValidateMwr,
+  updateContactValidateMwr,
   updateFavoriteValidateMwr,
-} = require('./postsValitationMwr');
+  checkContactIdMwr,
+} = require('./contactsValitationMwr');
 const { uploadAvatarMwr } = require('./uploadAvatarMwr');
 const { authUserValidateMwr, registerUserValidateMwr } = require('./usersValidationMwr');
 const { repeatedVerifyMwr } = require('./repeatedVerifyMwr');
@@ -13,12 +14,13 @@ const {
 
 module.exports = {
   authMwr,
-  addPostValidateMwr,
-  updatePostValidateMwr,
+  addContactValidateMwr,
+  updateContactValidateMwr,
   updateFavoriteValidateMwr,
   uploadAvatarMwr,
   authUserValidateMwr,
   registerUserValidateMwr,
   repeatedVerifyMwr,
   verificationTokenValidateMwr,
+  checkContactIdMwr,
 };

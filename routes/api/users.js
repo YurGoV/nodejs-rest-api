@@ -26,8 +26,9 @@ router.post('/logout', authMwr, logoutUserContr);
 router.get('/current', authMwr, getCurrentUserContr);
 router.patch(
   '/avatars',
-  [authMwr, uploadAvatarMwr.single('avatar')],
-  uploadAvatarContr
+  // [authMwr, uploadAvatarMwr.single('avatar')],
+  [authMwr, uploadAvatarMwr('avatar')],
+  uploadAvatarContr// ! rename to saveAvatarContr...
 );
 router.get(
   '/verify/:verificationToken',

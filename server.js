@@ -52,15 +52,30 @@ start()
 
 // TODO: in homework:
 // ? preDone errors wrapper; // need more - from any other - 2 variants for dev and for production
-// Done async wrapper;
+// DONE async wrapper;
 // ? preDone (in login route) password select false in user model & +password in needed queries;
 // ? preDone (in login route) password undefined при відповідях (реєстрація, апдейт, тощо);
-// ? DONE current data in update: {new: true};
-// перевірка, чи валідний ID // ObjectId.isValid(id);
-// видалити детальну валідацію паролю у джоі при логіні (зробити як тут)
-// uploaded file size limit
-// mongosh auth hook - to homework
-// ?DONE(TO CHECK) dev/prod errors (lessons - in server.js)
-// admin route/auth
+// DONE current data in update: {new: true};
+// DONE (contactsId) перевірка, чи валідний ID // ObjectId.isValid(id);
+// DONE  avatar auto folder, sharp
+
+// *видалити детальну валідацію паролю у джоі при логіні (зробити як тут)
+// DONE uploaded file size limit
+// *mongosh auth hook - to homework
+// ?(TO COMPLETE) dev/prod errors (lessons - in server.js)
+// *admin route/auth
+
+// !normal relation in mongodb model!
+// * sorting (take from todoController)
+// *populate (to take owner in received contact) ~ file: todoController.js:38 ~ receivedTodos:'
+// *multer - file extension and type check by mime
+
+// * learn how imageService work
+// * change/reset passwd
+
+// * reset url from authController
+// * image upload class
+
+//* add username (to avatar filename also) auto usernameInFilename
 
 // todo: learn cron job

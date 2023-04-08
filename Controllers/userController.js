@@ -1,15 +1,15 @@
-const fs = require('fs').promises;
-const Jimp = require('jimp');
+const fse = require('fs-extra');
+const sharp = require('sharp');
+const { v4: uuid } = require('uuid');
 const path = require('path');
 require('dotenv').config();
 
 const { CustomError } = require('../utils');
 
-const { PORT, AVATAR_TEMP_DIR_ENV, AVATAR_CONST_DIR_ENV } = process.env;
-// const AVATAR_TEMP_DIR_ENV = process.env.AVATAR_TEMP_DIR_ENV;
-// const AVATAR_CONST_DIR_ENV = process.env.AVATAR_CONST_DIR_ENV;
-const AVATAR_TEMP_DIR = path.resolve(AVATAR_TEMP_DIR_ENV);
-const AVATAR_CONST_DIR = path.resolve(AVATAR_CONST_DIR_ENV);
+const { PORT, FILE_DIR_ENV, AVATAR_SUBDIR_ENV } = process.env;
+const AVATAR_DIR = path.resolve(FILE_DIR_ENV, AVATAR_SUBDIR_ENV);
+
+const avatarSize = { height: 500, width: 500 };
 
 const {
   registerUserServ,
@@ -20,30 +20,10 @@ const {
 const { User } = require('../db/usersModel');
 const { catchAsyncWrapper } = require('../utils');
 
-/* const createUserContr = async (req, res, next) => {
-  try {
-    const userData = req.body;
-
-    const createdUser = await registerUserServ(userData);
-
-    res.status(201).json({
-      user: {
-        email: `${createdUser.email}`,
-        subscription: `${createdUser.subscription}`,
-      },
-    });
-  } catch (err) {
-    if (err.code === 11000) {
-      return res.status(409).json({ message: 'Email in use' });
-    }
-    res.status(500).json(err.message);
-  }
-}; */
 const createUserContr = catchAsyncWrapper(async (req, res) => {
   const userData = req.body;
 
   const createdUser = await registerUserServ(userData);
-  // console.log('CL: ~ file: userController.js:45 ~ createdUser:', createdUser);
 
   res.status(201).json({
     user: {
@@ -54,7 +34,6 @@ const createUserContr = catchAsyncWrapper(async (req, res) => {
 });
 
 const loginUserContr = catchAsyncWrapper(async (req, res, next) => {
-  // try {
   const { email, password } = req.body;
 
   const searchUserResult = await findValidUserServ(email, password);
@@ -76,24 +55,14 @@ const loginUserContr = catchAsyncWrapper(async (req, res, next) => {
 
   return next(new CustomError(401, 'Please verify you email'));
   // todo: error handle check
-
-  // } catch (err) {
-  //   res.status(500).json(err.message);
-  // }
 });
 
 const logoutUserContr = catchAsyncWrapper(async (req, res) => {
-  // try {
   await User.findOneAndUpdate({ email: req.user }, { token: '' });
 
   return res.status(204).json({});
-  // } catch (err) {
-  //   res.status(500).json(err.message);
-  // }
 });
 
-// todo: there: if in catch async wrapper - have an error:
-// Cannot set headers after they are sent to the client
 const getCurrentUserContr = (req, res, next) => {
   try {
     const { user, subscription } = req;
@@ -108,18 +77,26 @@ const getCurrentUserContr = (req, res, next) => {
   }
 };
 
-const uploadAvatarContr = catchAsyncWrapper(async (req, res) => {
-  // try {
-  const { user, uniqueFileName } = req;
-  const avatarTempUrl = path.resolve(AVATAR_TEMP_DIR, uniqueFileName);
-  const avatarConstUrl = path.resolve(AVATAR_CONST_DIR, uniqueFileName);
-  const avatarDownloadUrl = `http://localhost:${PORT}/api/avatars/${uniqueFileName}`;
+const uploadAvatarContr = catchAsyncWrapper(async (req, res, next) => {
+  const { user, file } = req; // *multer закидає файл у реквест, тому беремо його з реквесту
 
-  const image = await Jimp.read(avatarTempUrl); // todo:  move to service
-  image.resize = await image.resize(250, Jimp.AUTO);
-  await image.writeAsync(avatarConstUrl);
+  if (!file) {
+    return next(CustomError(400, 'avatar file not found')); // ! check syntaxes
+  }
 
-  await fs.unlink(avatarTempUrl);
+  const fileRandomName = `${uuid()}.jpeg`;
+  const userAvatarFolder = req.userId.toString();
+  const fullFilePath = path.join(AVATAR_DIR, userAvatarFolder);
+
+  await fse.ensureDir(fullFilePath);
+
+  await sharp(file.buffer)
+    .resize(avatarSize)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(path.join(fullFilePath, fileRandomName));
+
+  const avatarDownloadUrl = `http://localhost:${PORT}/files/${AVATAR_SUBDIR_ENV}/${userAvatarFolder}/${fileRandomName}`;
 
   await User.findOneAndUpdate(
     { email: user },
@@ -127,11 +104,8 @@ const uploadAvatarContr = catchAsyncWrapper(async (req, res) => {
   );
 
   return res.status(200).json({
-    avatarURL: avatarConstUrl,
+    avatarURL: avatarDownloadUrl,
   });
-  // } catch (err) {
-  //   res.status(500).json(err.message);
-  // }
 });
 
 const verifyUserContr = catchAsyncWrapper(async (req, res) => {

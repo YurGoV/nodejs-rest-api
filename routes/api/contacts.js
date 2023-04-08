@@ -12,23 +12,26 @@ const {
 } = require('../../Controllers');
 
 const {
-  addPostValidateMwr,
-  updatePostValidateMwr,
+  addContactValidateMwr,
+  updateContactValidateMwr,
   updateFavoriteValidateMwr,
   authMwr,
+  checkContactIdMwr,
 } = require('../../middlewars');
 
 router.use(authMwr);
+
+router.use('/:contactId', checkContactIdMwr);
 
 router.get('/', getContactsContr);
 
 router.get('/:contactId', getContactByIdContr);
 
-router.post('/', addPostValidateMwr, addContactContr);
+router.post('/', addContactValidateMwr, addContactContr);
 
 router.delete('/:contactId', deleteContactContr);
 
-router.patch('/:contactId', updatePostValidateMwr, patchContactContr);
+router.patch('/:contactId', updateContactValidateMwr, patchContactContr);
 
 router.patch(
   '/:contactId/favorite/',
