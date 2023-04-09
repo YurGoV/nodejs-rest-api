@@ -8,7 +8,7 @@ const { PORT, MONGO_URL } = process.env;
 
 const connectMongo = catchAsyncWrapper(async () => {
   mongoose.set('strictQuery', false);
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(MONGO_URL).catch((error) => console.log(error));// todo: refactor 
   // eslint-disable-next-line no-console
   return console.log('connected to DB');
 });

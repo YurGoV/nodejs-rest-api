@@ -16,7 +16,6 @@ Content-Type: application/json
   "email": "user1@email.com",
   "password": "nhd783jdol"
 }
-
 ###
 
 ### GET simple
@@ -26,13 +25,13 @@ Accept: application/json
 Authorization: Bearer {{token1}}
 ###
 ###
-GET http://localhost:3000/api/contacts/642c87122969c63fa569e028
+GET http://nodejs.yurgo.fun/api/contacts/642c87122969c63fa569e028
 Accept: application/json
 Authorization: Bearer {{token1}}
 ###
 
 ### BY ID no owner
-GET http://localhost:3000/api/contacts/63f1e79d4dc50cca4f43735b
+GET http://nodejs.yurgo.fun/api/contacts/63f1e79d4dc50cca4f43735b
 Accept: application/json
 Authorization: Bearer {{token1}}
 ###
