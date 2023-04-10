@@ -14,18 +14,19 @@ jobs:
       - name: Install, lint, build 🔧
         run: |
           npm install
-          npm run lint
+          npm run lint:js
+          npm run build
 
-      # - name: Deploy 🚀
-      #   uses: JamesIves/github-pages-deploy-action@4.1.0
-      #   with:
-      #     branch: gh-pages
-      #     folder: build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: build
 #      - name: executing remote ssh commands using ssh key
 #        uses: appleboy/ssh-action@master
 #        with:
 #          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USERNAME }}
+#          username: ${{ secrets.USER }}
 #          key: ${{ secrets.KEY_ED25519 }}
 #          port: ${{ secrets.PORT }}
 #          script: |
@@ -34,11 +35,11 @@ jobs:
 #            git clone https://github.com/YurGoV/gh-actions-check.git
 #            echo 'deployed to GDO'
 
-     - name: executing remote ssh commands using ssh key
-       uses: appleboy/ssh-action@master
-       with:
-         host: ${{ secrets.HOST }}
-         username: ${{ secrets.USER }}
-         key: ${{ secrets.KEY_ED25519 }}
-         port: ${{ secrets.PORT }}
-         script: sh gh-action-nodejs-deploy
+#      - name: executing remote ssh commands using ssh key
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USER }}
+#          key: ${{ secrets.KEY_ED25519 }}
+#          port: ${{ secrets.PORT }}
+#          script: sh gh-action-script
