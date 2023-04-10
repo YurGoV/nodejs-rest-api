@@ -3,7 +3,8 @@ on:
   push:
     branches: [main]
 jobs:
-  job-1:
+  jobone:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
