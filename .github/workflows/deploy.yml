@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm i
-      - name: executing remote ssh commands using ssh key
       - uses: appleboy/ssh-action@master
+      - name: executing remote ssh commands using ssh key
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
