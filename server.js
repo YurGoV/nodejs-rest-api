@@ -20,7 +20,7 @@ connectMongo();
 
   if (NODE_ENV === 'development') {
     console.log('CL ~ app.js [35]: lllll');  
-    res.status(status || 500).json({
+    res.status(status || 500).json({   
       message: err.message,
       stack: err.stack,
     });
