@@ -21,7 +21,7 @@ app.use('/files/', filesRouter);
 
 app.all('*', (req, res) => {
   res.status(404).json({
-    message: 'route not fAund',
+    message: 'route not found',
   });
 });
 
