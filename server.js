@@ -27,7 +27,7 @@ connectMongo();
   } else {
     res.status(status || 500).json({
       message: err.message, 
-    });
+    });  
   }
   // TODO: stack: err.stack// для розробки - конкретика по помилці - можна окремо під умовами оточення: дев та ін
   // TODO: можна винести в окремий файл   
