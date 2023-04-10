@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - uses: appleboy/ssh-action@master
-      - name: executing remote ssh commands using ssh key
+        name: executing remote ssh commands using ssh key
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
