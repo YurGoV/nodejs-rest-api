@@ -19,7 +19,7 @@ connectMongo();
   const { status } = err; // there we get error status, that was setting on user useMiddlewares
 
   if (NODE_ENV === 'development') {
-    console.log('CL ~ app.js [35]: lllll');
+    console.log('CL ~ app.js [35]: lllll');  
     res.status(status || 500).json({
       message: err.message,
       stack: err.stack,
