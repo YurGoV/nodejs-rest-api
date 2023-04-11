@@ -4,11 +4,7 @@
     "title": "test API",
     "version": "v1"
   },
-  "servers": [
-    {
-      "url": "http://yurgo.fun"
-    }
-  ],
+
   "tags": [
     {
       "name": "Contacts API",
