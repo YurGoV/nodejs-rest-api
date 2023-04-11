@@ -6,6 +6,17 @@ const { catchAsyncWrapper } = require('./utils');
 const { PORT, MONGO_URL } = process.env;
 // const { MONGO_URL } = process.env.MONGO_URL;
 
+/* // * SWAGGER SECTION START
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerDocument = require('./swagger.json');
+
+// router.use('/api-docs', swaggerUi.serve);
+// router.get('/api-docs', swaggerUi.setup(swaggerDocument));
+const bodyParser = require('body-parser');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+// * SWAGGER SECTION END */
+
 const connectMongo = catchAsyncWrapper(async () => {
   mongoose.set('strictQuery', false);
   // eslint-disable-next-line no-console
@@ -32,6 +43,38 @@ connectMongo();
   // TODO: stack: err.stack// для розробки - конкретика по помилці - можна окремо під умовами оточення: дев та ін
   // TODO: можна винести в окремий файл   
 }); */
+
+/* // * SWAGGER SECTION START
+const options = {
+  definition: {
+    openapi: '3.1.0',
+    info: {
+      title: 'LogRocket Express API with Swagger',
+      version: '0.1.0',
+      description:
+        'This is a simple CRUD API application made with Express and documented with Swagger',
+      license: {
+        name: 'MIT',
+        url: 'https://spdx.org/licenses/MIT.html',
+      },
+      contact: {
+        name: 'LogRocket',
+        url: 'https://logrocket.com',
+        email: 'info@email.com',
+      },
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+      },
+    ],
+  },
+  apis: ['./routes/*.js'],
+};
+
+const specs = swaggerJsdoc(options);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+// * SWAGGER SECTION END */
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console

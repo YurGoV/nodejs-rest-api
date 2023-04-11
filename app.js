@@ -1,6 +1,19 @@
 const express = require('express');
+
 const logger = require('morgan');
 const cors = require('cors');
+
+// * SWAGGER SECTION START
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerDocument = require('./swagger.json');
+
+// router.use('/api-docs', swaggerUi.serve);
+// router.get('/api-docs', swaggerUi.setup(swaggerDocument));
+
+// const bodyParser = require('body-parser');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+// * SWAGGER SECTION END
 
 const { contactsRouter, usersRouter, filesRouter } = require('./routes');
 const customErrorMessage = require('./utils/customErrorsMessages');
@@ -8,6 +21,8 @@ const customErrorMessage = require('./utils/customErrorsMessages');
 const { NODE_ENV } = process.env;
 
 const app = express();
+
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
@@ -18,6 +33,22 @@ app.use(express.json());
 app.use('/api/contacts', contactsRouter);
 app.use('/api/users', usersRouter);
 app.use('/files/', filesRouter);
+
+// * SWAGGER SECTION START
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'server rest api',
+      version: '1.0.0',
+    },
+  },
+  apis: ['./routes/api/*.js'], // files containing annotations as above
+};
+
+const specs = swaggerJsdoc(options);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+// * SWAGGER SECTION END
 
 app.all('*', (req, res) => {
   res.status(404).json({

@@ -21,9 +21,41 @@ const {
 
 router.use(authMwr);
 
-router.use('/:contactId', checkContactIdMwr);
+// /**
+//  * @swagger
+//  * components:
+//  *   securitySchemes:
+//  *     bearerAuth:            # arbitrary name for the security scheme
+//  *       type: http
+//  *       scheme: bearer
+//  *       bearerFormat: JWT   
+//  */
 
+/**
+ * @swagger:
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:            # arbitrary name for the security scheme
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT 
+ */
+
+/**
+ * @swagger
+ * /api/contacts/:
+ *   get:
+ *     security:
+ *        - bearerAuth: []
+ *     description: Get contacts
+ * 
+ *     responses:
+ *       200:
+ *         description: Returns contacts with default per/pages.
+ */
 router.get('/', getContactsContr);
+
+router.use('/:contactId', checkContactIdMwr);
 
 router.get('/:contactId', getContactByIdContr);
 
