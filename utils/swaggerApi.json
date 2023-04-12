@@ -6,8 +6,8 @@
   },
   "tags": [
     {
-      "name": "Contacts API",
-      "description": "API to work with contacts. Token for test: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGVtYWlsLmNvbSIsInN1YnNjcmlwdGlvbiI6InN0YXJ0ZXIiLCJ2ZXJpZnkiOnRydWUsImlhdCI6MTY4MTI5MDE5M30.HLTNaMcYGAmPvWRpUzvA6lSZNkvwfCqsg7rB4Av66_M"
+      "name": "Contacts API. Token for test:",
+      "description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGVtYWlsLmNvbSIsInN1YnNjcmlwdGlvbiI6InN0YXJ0ZXIiLCJ2ZXJpZnkiOnRydWUsImlhdCI6MTY4MTI5MDE5M30.HLTNaMcYGAmPvWRpUzvA6lSZNkvwfCqsg7rB4Av66_M"
     }
   ],
   "paths": {
