@@ -103,7 +103,7 @@
                 "$ref": "#/components/schemas/Contact"
               },
               "example": {
-                "name": "Jackson",
+                "name": "user12updated",
                 "email": "example@example.com",
                 "phone": "+380670000001"
               }
@@ -118,7 +118,7 @@
             "description": "user id",
             "schema": {
               "type": "string",
-              "example": "8jdiosoiuwjdw"
+              "example": "6435681c54d50f705952fa96"
             }
           }
         ],
