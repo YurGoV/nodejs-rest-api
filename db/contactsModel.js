@@ -19,7 +19,7 @@ const contactsSchema = new mongoose.Schema({
   },
   owner: {
     type: SchemaTypes.ObjectId,
-    ref: 'users',
+    ref: 'User',
   },
 });
 

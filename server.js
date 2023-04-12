@@ -68,7 +68,7 @@ start()
 
 // !normal relation in mongodb model!
 // * sorting (take from todoController)
-// *populate (to take owner in received contact) ~ file: todoController.js:38 ~ receivedTodos:'
+// DONE populate (to take owner in received contact) ~ file: Services/contacts.js
 // *multer - file extension and type check by mime
 
 // * learn how imageService work

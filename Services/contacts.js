@@ -11,9 +11,12 @@ const countContactsServ = async (owner, favoriteArr) => {
 const listContactsServ = async (owner, favoriteArr, { skip, limit }) => {
   try {
     const data = await Contacts.find({ owner, favorite: favoriteArr })
-      .select({ __v: 0, owner: 0 })
+      // .select({ __v: 0, owner: 0 }) // TODO: replace
+      .select({ __v: 0 })
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .populate('owner', 'email avatarURL -_id');
+
     return data;
   } catch (err) {
     return err.message;
