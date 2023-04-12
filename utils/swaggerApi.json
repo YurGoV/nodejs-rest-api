@@ -4,11 +4,10 @@
     "title": "test API",
     "version": "v1"
   },
-
   "tags": [
     {
       "name": "Contacts API",
-      "description": "API to work with contacts"
+      "description": "API to work with contacts. Token for test: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGVtYWlsLmNvbSIsInN1YnNjcmlwdGlvbiI6InN0YXJ0ZXIiLCJ2ZXJpZnkiOnRydWUsImlhdCI6MTY4MTI5MDE5M30.HLTNaMcYGAmPvWRpUzvA6lSZNkvwfCqsg7rB4Av66_M"
     }
   ],
   "paths": {
@@ -34,45 +33,45 @@
                   "properties": {
                     "pagination": {
                       "type": "object",
-                      "properties":{
-                        "totalContacts":{
-                          "type":"integer",
+                      "properties": {
+                        "totalContacts": {
+                          "type": "integer",
                           "example": "98"
                         },
                         "page": {
                           "type": "integer",
                           "example": "1"
                         },
-                        "perPage":{
+                        "perPage": {
                           "type": "integer",
                           "example": "5"
                         }
                       }
                     },
                     "contacts": {
-                      "type":"array",
+                      "type": "array",
                       "items": {
                         "type": "object",
                         "properties": {
-                          "id":{
+                          "id": {
                             "type": "string",
                             "example": "642c87122969c63fa569e028"
                           },
-                          "name":{
+                          "name": {
                             "type": "string",
                             "example": "Michael Douglas"
                           },
-                          "email":{
+                          "email": {
                             "type": "string",
-                            "example": "email@email.com" 
+                            "example": "email@email.com"
                           },
-                          "phone":{
+                          "phone": {
                             "type": "string",
-                            "example": "+380670000001" 
+                            "example": "+380670000001"
                           },
-                          "favorite":{
+                          "favorite": {
                             "type": "boolean",
-                            "example": "false" 
+                            "example": "false"
                           }
                         }
                       }
@@ -84,17 +83,77 @@
           }
         }
       }
+    },
+    "/api/contacts/{id}": {
+      "patch": {
+        "summary": "update contact",
+        "tags": [
+          "Contacts API"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contact"
+              },
+              "example": {
+                "name": "Jackson",
+                "email": "example@example.com",
+                "phone": "+380670000001"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "user id",
+            "schema": {
+              "type": "string",
+              "example": "8jdiosoiuwjdw"
+            }
+          }
+        ],
+        "description": "parameter id just for test",
+        "responses": {
+          "204": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "Info": {
+      "Contact": {
         "type": "object",
         "properties": {
-          "country": {
+          "id": {
+            "type": "string",
+            "required": [
+              "true",
+              "contact id is required"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "required": [
+              "true",
+              "Set name for contact"
+            ]
+          },
+          "email": {
             "type": "string"
           },
-          "city": {
+          "phone": {
             "type": "string"
           }
         }
