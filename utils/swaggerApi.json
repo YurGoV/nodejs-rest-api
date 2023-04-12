@@ -83,44 +83,6 @@
             }
           }
         }
-      },
-      "post": {
-        "summary": "returns simple answer from post",
-        "tags": [
-          "Contacts API"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Info"
-              },
-              "example": {
-                "country": "Russia",
-                "city": "Spb"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "simple parameter",
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "description": "parameter id just for test",
-        "responses": {
-          "204": {
-            "description": "OK"
-          }
-        }
       }
     }
   },
